@@ -20,8 +20,13 @@ describe('resolving', function() {
             provide('C' + B + A);
         });
 
-        modules.require(['C'], function(C) {
+        modules.require('C', function(C) {
             C.should.have.been.equal('CABA');
+        });
+
+        modules.require(['A', 'B'], function(A, B) {
+            A.should.have.been.equal('A');
+            B.should.have.been.equal('AB');
             done();
         });
     });
@@ -45,8 +50,13 @@ describe('resolving', function() {
             }, 10);
         });
 
-        modules.require(['C'], function(C) {
+        modules.require('C', function(C) {
             C.should.have.been.equal('CABA');
+        });
+
+        modules.require(['A', 'B'], function(A, B) {
+            A.should.have.been.equal('A');
+            B.should.have.been.equal('AB');
             done();
         });
     });
@@ -73,6 +83,7 @@ describe('resolving', function() {
 
 describe('errors', function() {
     it('should throw error on requiring undefined module', function(done) {
+        modules.isDefined('A').should.have.been.equal(false);
         modules.require(['A'], function() {}, function(e) {
             e.message.should.have.been.equal('Required module "A" can\'t be resolved');
             done();
@@ -188,6 +199,10 @@ describe('errors', function() {
             modules.getState('C').should.be.equal('NOT_RESOLVED');
             modules.getState('B').should.be.equal('NOT_RESOLVED');
             modules.getState('A').should.be.equal('NOT_RESOLVED');
+            modules.getState('X').should.be.equal('NOT_DEFINED');
+            modules.getStat().should.to.deep.equal({
+                NOT_RESOLVED: [ 'A', 'B', 'C' ]
+            });
             done();
         });
     });
