@@ -11,9 +11,7 @@
 
 (function(global) {
 
-var undef,
-
-    DECL_STATES = {
+var DECL_STATES = {
         NOT_RESOLVED : 'NOT_RESOLVED',
         IN_RESOLVING : 'IN_RESOLVING',
         RESOLVED     : 'RESOLVED'
@@ -49,7 +47,7 @@ var undef,
                 if(!module) {
                     module = modulesStorage[name] = {
                         name : name,
-                        decl : undef
+                        decl : undefined
                     };
                 }
 
@@ -60,7 +58,7 @@ var undef,
                     state      : DECL_STATES.NOT_RESOLVED,
                     deps       : deps,
                     dependents : [],
-                    exports    : undef
+                    exports    : undefined
                 };
             },
 
@@ -264,7 +262,7 @@ var undef,
                     dependent(exports);
                 }
 
-                decl.dependents = undef;
+                decl.dependents = undefined;
             },
 
             provideError = function(decl, error) {
