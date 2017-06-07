@@ -23,6 +23,7 @@
         "chai" : "^4.0.2"
     },
     "scripts" : {
+        "clover" : "nyc --reporter=clover npm run bdd",
         "coverage" : "nyc --reporter=text --reporter=html npm run bdd; echo; echo 'Open coverage/index.html file in your browser'",
         "lint" : "jshint modules.js && jscs modules.js",
         "bdd" : "mocha -u bdd -R spec --recursive",
