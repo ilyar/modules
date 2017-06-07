@@ -1,8 +1,7 @@
-filter:
-    paths: ["modules.js"]
-checks:
-    javascript: true
 build:
+    dependencies:
+        before:
+            - npm install
     tests:
         override:
             -
@@ -10,4 +9,8 @@ build:
                 coverage:
                     file: 'coverage/clover.xml'
                     format: 'clover'
-
+checks:
+    javascript: true
+filter:
+    excluded_paths:
+        - "tests/"
