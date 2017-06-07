@@ -1,0 +1,13 @@
+filter:
+    paths: ["modules.js"]
+checks:
+    javascript: true
+build:
+    tests:
+        override:
+            -
+                command: 'nyc --reporter=clover npm run bdd'
+                coverage:
+                    file: 'coverage/clover.xml'
+                    format: 'clover'
+
